@@ -14,7 +14,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:7600', // Your React app's origin
+  origin: 'https://atlasmarket-eight.vercel.app', // Your React app's origin
   credentials: true
 }));
 app.use(express.json());
