@@ -13,10 +13,10 @@ const adminMiddleware = require('./middleware/admin');
 const app = express();
 
 // Middleware
-// CORS configuration
+// ✅ CORS middleware should come **before** any routes
 app.use(cors({
-  origin: ['https://atlasmarket-eight.vercel.app','http://localhost:7600'], // Allow only your React app
-  credentials: true, // Allow credentials like cookies
+  origin: ['https://atlasmarket-eight.vercel.app', 'http://localhost:7600'], // Allowed origins
+  credentials: true, // Allow cookies and authentication headers
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
   allowedHeaders: ['Content-Type', 'Authorization'] // Allowed headers
 }));
