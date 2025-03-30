@@ -13,14 +13,29 @@ const cors = require('cors');
 const app = express();
 
 // ------------------------------------------ cros  --------------------------------------
-app.use(cors({
-  origin: 'https://atlasmarket-eight.vercel.app',
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
-}));
+// In your Node.js backend
+const allowedOrigins = [
+  'https://atlasmarket-eight.vercel.app',
+  'https://atlasmarket-eight.vercel.app/',
+  'https://atlas-back-end.vercel.app',
+  'http://localhost:3000' // for local development
+];
 
-// Handle preflight requests
-app.options('*', cors());
+app.use(cors({
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = `The CORS policy for this site does not allow access from the specified Origin: ${origin}`;
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 // ------------------------------------------ cros  --------------------------------------
 
 app.use(express.json());
