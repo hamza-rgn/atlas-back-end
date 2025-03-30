@@ -14,17 +14,10 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: (origin, callback) => {
-    const allowedOrigins = ['https://atlasmarket-eight.vercel.app'];
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true); // Allow the origin
-    } else {
-      callback(new Error('Not allowed by CORS')); // Reject the request if origin is not allowed
-    }
-  },
+  origin: `${process.env.VITE_FRONT_URL}`, // Replace with the actual origin of your client app
   methods: 'GET,POST,PUT,DELETE',
-  credentials: true
-}));
+  // optionsSuccessStatus: 200, // Some legacy browsers (IE11) choke on a 204 response
+  }));
 
 
 
