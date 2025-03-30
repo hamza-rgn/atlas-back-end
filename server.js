@@ -4,6 +4,7 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const authMiddleware = require('./middleware/auth');
@@ -12,13 +13,13 @@ const adminMiddleware = require('./middleware/admin');
 const app = express();
 
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://atlasmarket-eight.vercel.app'); // Frontend domain
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.header('Access-Control-Allow-Credentials', 'true'); // Allow cookies
-  next();
-})
+app.use(cors({
+  origin: `${process.env.VITE_FRONT_URL}`,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Auth-Token'],
+  credentials: true // If using cookies/auth
+}));
+
 
 app.use(express.json());
 
