@@ -12,14 +12,13 @@ const adminMiddleware = require('./middleware/admin');
 
 const app = express();
 
-// Middleware
-app.use(cors({
-  origin: `${process.env.VITE_FRONT_URL}`, // Replace with the actual origin of your client app
-  methods: 'GET,POST,PUT,DELETE',
-  credentials: true
-  // optionsSuccessStatus: 200, // Some legacy browsers (IE11) choke on a 204 response
-  }));
 
+app.use(cors({
+  origin: `${process.env.VITE_FRONT_URL}`,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Auth-Token'],
+  credentials: true // If using cookies/auth
+}));
 
 
 app.use(express.json());
