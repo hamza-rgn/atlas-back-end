@@ -14,9 +14,10 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: 'https://atlasmarket-eight.vercel.app', 
+  origin: 'https://atlasmarket-eight.vercel.app', // Ensure this matches the frontend's origin
   methods: 'GET,POST,PUT,DELETE',
-  }));
+  credentials: true // Allow credentials (cookies, authorization headers, etc.)
+}));
 
 
 app.use(express.json());
