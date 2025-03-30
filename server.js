@@ -8,10 +8,17 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const authMiddleware = require('./middleware/auth');
 const adminMiddleware = require('./middleware/admin');
+const cors = require('cors');
 
 const app = express();
 
 // ------------------------------------------ cros  --------------------------------------
+app.use(cors({
+  origin: 'https://atlasmarket-eight.vercel.app',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+}));
+
 // Handle preflight requests
 app.options('*', cors());
 // ------------------------------------------ cros  --------------------------------------
