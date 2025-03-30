@@ -13,10 +13,7 @@ const adminMiddleware = require('./middleware/admin');
 const app = express();
 
 // Middleware
-app.use(cors({
-  origin: 'https://atlasmarket-eight.vercel.app', // Your React app's origin
-  credentials: true
-}));
+
 app.use(express.json());
 
 // Database connection
