@@ -14,12 +14,14 @@ const app = express();
 
 // Middleware
 // ✅ CORS middleware should come **before** any routes
-app.use(cors({
-  origin: ['https://atlasmarket-eight.vercel.app', 'http://localhost:7600'], // Allowed origins
-  credentials: true, // Allow cookies and authentication headers
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
-  allowedHeaders: ['Content-Type', 'Authorization'] // Allowed headers
-}));
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://atlasmarket-eight.vercel.app");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
+
 app.use(express.json());
 
 // Database connection
