@@ -14,7 +14,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: 'https://atlasmarket-git-master-atlas-projects-56d9b1cb.vercel.app', // Ensure this matches the frontend's origin
+  origin: '*', // Ensure this matches the frontend's origin
   methods: 'GET,POST,PUT,DELETE',
   credentials: true // Allow credentials (cookies, authorization headers, etc.)
 }));
