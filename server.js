@@ -52,9 +52,17 @@ mongoose.connect(process.env.MONGODB_URI, {
 const User = require('./models/User');
 const Order = require('./models/Order');
 const LandingPage = require('./models/LandingPage');
-app.get('/test',async(req,res)=>{
-  res.send('hello')
-})
+
+app.get('/test', (req, res) => {
+  // Get all request headers
+  const headers = req.headers;
+  
+  // Display headers in response (JSON format)
+  res.json({
+    message: "Here are the request headers:",
+    headers: headers
+  });
+});
 // In your login route (/api/auth/login)
 app.post('/api/auth/login', async (req, res) => {
     const { username, password } = req.body;
