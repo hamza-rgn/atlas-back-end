@@ -16,6 +16,7 @@ const app = express();
 app.use(cors({
   origin: `${process.env.VITE_FRONT_URL}`, // Replace with the actual origin of your client app
   methods: 'GET,POST,PUT,DELETE',
+  credentials: true
   // optionsSuccessStatus: 200, // Some legacy browsers (IE11) choke on a 204 response
   }));
 
