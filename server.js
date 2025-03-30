@@ -62,7 +62,7 @@ app.get('/test', (req, res) => {
     message: "Here are the request headers:",
     headers: headers
   });
-});
+}); 
 // In your login route (/api/auth/login)
 app.post('/api/auth/login', async (req, res) => {
     const { username, password } = req.body;
