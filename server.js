@@ -4,7 +4,6 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const authMiddleware = require('./middleware/auth');
@@ -13,25 +12,7 @@ const adminMiddleware = require('./middleware/admin');
 const app = express();
 
 // ------------------------------------------ cros  --------------------------------------
-app.use((req, res, next) => {
-  // Set allowed origins (adjust for production)
-  const allowedOrigins = [
-    'https://atlasmarket-eight.vercel.app'
-    ];
-  
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-  }
 
-  
-  // Handle preflight requests
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(200);
-  }
-  
-  next();
-});
 // ------------------------------------------ cros  --------------------------------------
 
 app.use(express.json());
