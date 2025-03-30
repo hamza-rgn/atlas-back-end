@@ -13,7 +13,13 @@ const adminMiddleware = require('./middleware/admin');
 const app = express();
 
 // Middleware
-
+// CORS configuration
+app.use(cors({
+  origin: ['https://atlasmarket-eight.vercel.app','http://localhost:7600'], // Allow only your React app
+  credentials: true, // Allow credentials like cookies
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'] // Allowed headers
+}));
 app.use(express.json());
 
 // Database connection
