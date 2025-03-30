@@ -13,14 +13,11 @@ const adminMiddleware = require('./middleware/admin');
 const app = express();
 
 // Middleware
-// ✅ CORS middleware should come **before** any routes
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://atlasmarket-eight.vercel.app");
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  next();
-});
+app.use(cors({
+  origin: 'https://atlasmarket-eight.vercel.app', 
+  methods: 'GET,POST,PUT,DELETE',
+  }));
+
 
 app.use(express.json());
 
