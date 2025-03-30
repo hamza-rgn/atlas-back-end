@@ -12,14 +12,30 @@ const adminMiddleware = require('./middleware/admin');
 
 const app = express();
 
-
-app.use(cors({
-  origin: `${process.env.VITE_FRONT_URL}`,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Auth-Token'],
-  credentials: true // If using cookies/auth
-}));
-
+// ------------------------------------------ cros  --------------------------------------
+app.use((req, res, next) => {
+  // Set allowed origins (adjust for production)
+  const allowedOrigins = [
+    'https://atlasmarket-eight.vercel.app'
+    ];
+  
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  
+  next();
+});
+// ------------------------------------------ cros  --------------------------------------
 
 app.use(express.json());
 
