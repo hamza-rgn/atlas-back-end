@@ -12,7 +12,8 @@ const adminMiddleware = require('./middleware/admin');
 const app = express();
 
 // ------------------------------------------ cros  --------------------------------------
-
+// Handle preflight requests
+app.options('*', cors());
 // ------------------------------------------ cros  --------------------------------------
 
 app.use(express.json());
